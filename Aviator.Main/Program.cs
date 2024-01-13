@@ -3,6 +3,7 @@ using Aviator.Main.Services;
 using Aviator.Main.Worker;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console(

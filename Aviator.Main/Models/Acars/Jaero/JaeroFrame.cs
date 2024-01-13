@@ -17,9 +17,9 @@ public class App
 public class Isu
 {
     public Acars acars { get; set; }
-    public Dst dst { get; set; }
     public string qno { get; set; }
     public string refno { get; set; }
+    public Dst dst { get; set; }
     public Src src { get; set; }
 }
 

@@ -1,3 +1,3 @@
 namespace Aviator.Main.Models.Router;
 
-public delegate void HandleMessage(byte[] buffer);
+public delegate Task HandleMessage(byte[] buffer, CancellationToken cancellationToken = default);

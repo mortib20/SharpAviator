@@ -1,4 +1,4 @@
-namespace Aviator.Main.Models.Router;
+namespace Aviator.Main.Models.Router.Input;
 
 public interface IRouterInput
 {

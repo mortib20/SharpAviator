@@ -1,16 +1,18 @@
 using System.Net.Sockets;
 using Serilog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
-namespace Aviator.Main.Models.Router;
+namespace Aviator.Main.Models.Router.Input;
 
-public sealed class UdpRouterInput(int port) : IRouterInput
+public sealed class UdpRouterInput(int port, ILoggerFactory loggerFactory) : IRouterInput
 {
-    private readonly UdpClient _udpClient = new UdpClient(port);
+    private readonly ILogger _logger = loggerFactory.CreateLogger(nameof(UdpRouterInput));
+    private readonly UdpClient _udpClient = new(port);
     public event HandleMessage? HandleMessage;
 
     public async Task Start(CancellationToken cancellationToken = default)
     {
-        Log.Information("Start listening on {EndPoint}", _udpClient.Client.LocalEndPoint);
+        _logger.LogInformation("Start listening on {EndPoint}", _udpClient.Client.LocalEndPoint);
         
         while (!cancellationToken.IsCancellationRequested)
         {

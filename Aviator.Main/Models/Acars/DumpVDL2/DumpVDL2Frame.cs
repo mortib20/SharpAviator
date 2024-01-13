@@ -43,12 +43,12 @@ public class Acars
 {
     public string ack { get; set; }
     public string blk_id { get; set; }
-    public bool crc_ok { get; set; }
-    public bool err { get; set; }
+    public string crc_ok { get; set; }
+    public string err { get; set; }
     public string flight { get; set; }
     public string label { get; set; }
     public string mode { get; set; }
-    public bool more { get; set; }
+    public string more { get; set; }
     public string msg_num { get; set; }
     public string msg_num_seq { get; set; }
     public string msg_text { get; set; }
