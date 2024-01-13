@@ -1,0 +1,58 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Decoder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Protocol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Port)
+            </th>
+            <th>Controls</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Endpoint)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Decoder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Protocol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Port)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Guid">Edit</a>
+                    <a type="button" class="btn btn-info" asp-page="./Details" asp-route-id="@item.Guid">Details</a>
+                    <a type="button" class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Guid">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

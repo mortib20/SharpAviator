@@ -1,0 +1,46 @@
+@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Aviator.Main.Models
+@model CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<div>
+    <a class="btn btn-secondary" asp-page="Index">Back to List</a>
+</div>
+
+<h4>Endpoint</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Endpoint.Decoder" class="control-label"></label>
+                <select asp-for="Endpoint.Decoder" asp-items="Html.GetEnumSelectList<Decoder>()" class="form-control"></select>
+                <span asp-validation-for="Endpoint.Decoder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endpoint.Protocol" class="control-label"></label>
+                <select asp-for="Endpoint.Protocol" asp-items="Html.GetEnumSelectList<Protocol>()" class="form-control"></select>
+                <span asp-validation-for="Endpoint.Protocol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endpoint.Address" class="control-label"></label>
+                <input asp-for="Endpoint.Address" class="form-control"/>
+                <span asp-validation-for="Endpoint.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endpoint.Port" class="control-label"></label>
+                <input asp-for="Endpoint.Port" class="form-control"/>
+                <span asp-validation-for="Endpoint.Port" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
