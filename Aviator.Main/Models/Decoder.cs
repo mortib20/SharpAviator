@@ -5,5 +5,6 @@ public enum Decoder
     DumpVdl2,
     DumpHfdl,
     Jaero,
-    IridiumToolkit
+    IridiumToolkit,
+    Acarsdec
 }

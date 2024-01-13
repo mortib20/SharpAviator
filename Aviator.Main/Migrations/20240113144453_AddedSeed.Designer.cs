@@ -3,6 +3,7 @@ using System;
 using Aviator.Main.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aviator.Main.Migrations
 {
     [DbContext(typeof(AviatorContext))]
-    partial class AviatorContextModelSnapshot : ModelSnapshot
+    [Migration("20240113144453_AddedSeed")]
+    partial class AddedSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -44,7 +47,7 @@ namespace Aviator.Main.Migrations
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("0efa2d19-de65-45bd-a3a8-1305afd6cb26"),
+                            Guid = new Guid("74ec7f80-000c-4c23-b42f-5512dc9a21ff"),
                             Address = "feed.airframes.io",
                             Decoder = 0,
                             Port = 5552,
@@ -52,7 +55,7 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("2f48dcc1-190b-4c94-91d6-53900464e8e9"),
+                            Guid = new Guid("78f40023-5ddf-480e-aae9-a0c8e1a4ff2e"),
                             Address = "feed.airframes.io",
                             Decoder = 1,
                             Port = 5556,
@@ -60,7 +63,7 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("24cd028d-4202-4177-b673-75ccf6df2139"),
+                            Guid = new Guid("53703d00-aba1-4d0b-b7c5-50dbea253659"),
                             Address = "feed.airframes.io",
                             Decoder = 4,
                             Port = 5550,
@@ -68,11 +71,11 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("791e21c8-0763-4dc4-94bf-8241a24d8bec"),
+                            Guid = new Guid("a456e7d4-6101-4b6d-8193-126058188b07"),
                             Address = "feed.airframes.io",
                             Decoder = 2,
                             Port = 5571,
-                            Protocol = 1
+                            Protocol = 0
                         });
                 });
 #pragma warning restore 612, 618
