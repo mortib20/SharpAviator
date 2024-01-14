@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Aviator.Main.Models;
+﻿using Aviator.Main.Models;
 using Microsoft.EntityFrameworkCore;
 using Endpoint = Aviator.Main.Models.Endpoint;
 
@@ -13,9 +12,9 @@ public class AviatorContext(DbContextOptions<AviatorContext> options) : DbContex
     {
         modelBuilder
             .Entity<Endpoint>()
-            .HasData(new List<Endpoint>()
+            .HasData(new List<Endpoint>
             {
-                new() 
+                new()
                 {
                     Guid = Guid.NewGuid(),
                     Decoder = Decoder.DumpVdl2,

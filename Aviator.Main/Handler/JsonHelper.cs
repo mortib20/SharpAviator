@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using Serilog;
 
 namespace Aviator.Main.Handler;
 

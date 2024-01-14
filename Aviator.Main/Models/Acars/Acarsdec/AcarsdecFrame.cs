@@ -26,4 +26,3 @@ public class App
     public string name { get; set; }
     public string ver { get; set; }
 }
-

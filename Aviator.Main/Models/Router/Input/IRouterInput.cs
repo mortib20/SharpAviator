@@ -4,6 +4,6 @@ public interface IRouterInput
 {
     event HandleMessage? HandleMessage;
     Task Start(CancellationToken cancellationToken = default);
-    
+
     void OnHandleMessage(byte[] buffer);
 }

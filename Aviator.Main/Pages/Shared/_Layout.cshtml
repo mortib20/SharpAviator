@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Components.Web
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -6,7 +7,9 @@
     <title>@ViewData["Title"] - Aviator</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/site.css"/>
-    <link rel="stylesheet" href="~/Aviator.Main.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Aviator.Main.style.css" asp-append-version="true"/>
+    <base href="~/"/>
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
 </head>
 <body>
 
@@ -21,6 +24,11 @@
                 @* Links *@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link" asp-page="Status">Status</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
                         <a class="nav-link" asp-page="Endpoint/Index">Endpoints</a>
                     </li>
                 </ul>
@@ -33,6 +41,7 @@
     @RenderBody()
 </div>
 
+<script src="_framework/blazor.server.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

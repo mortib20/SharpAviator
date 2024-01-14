@@ -3,7 +3,6 @@ using Aviator.Main.Services;
 using Aviator.Main.Worker;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console(
@@ -15,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 builder.Services.AddDbContext<AviatorContext>(s => s.UseSqlite("Data source=./aviator.db"));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddServerSideBlazor().AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<AviatorRouterService>();
 builder.Services.AddHostedService<AviatorRouter>();
@@ -34,5 +34,7 @@ app.UseAuthorization();
 app.UseAntiforgery();
 
 app.MapRazorPages();
+
+app.MapBlazorHub();
 
 await app.RunAsync();

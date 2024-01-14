@@ -10,7 +10,6 @@ public class MinimizeAcars
     public AcarsFrame? Handle(object data)
     {
         if (data is JaeroFrame jaero)
-        {
             return new AcarsFrame
             {
                 Channel = jaero.app.ver,
@@ -22,19 +21,14 @@ public class MinimizeAcars
                 Extras = new Dictionary<string, object?>
                 {
                     ["Dst"] = jaero.isu.dst,
-                    ["Src"] = jaero.isu.src,
-                },
-
+                    ["Src"] = jaero.isu.src
+                }
             };
-        }
 
         if (data is DumpVdl2Frame dumpVdl2Frame)
         {
-            if (dumpVdl2Frame.vdl2.avlc.acars is null)
-            {
-                return null;
-            }
-            
+            if (dumpVdl2Frame.vdl2.avlc.acars is null) return null;
+
             return new AcarsFrame
             {
                 Channel = dumpVdl2Frame.vdl2.freq.ToString(),
@@ -49,12 +43,11 @@ public class MinimizeAcars
                     ["Dst"] = dumpVdl2Frame.vdl2.avlc.dst,
                     ["Src"] = dumpVdl2Frame.vdl2.avlc.src,
                     ["NoiseLevel"] = dumpVdl2Frame.vdl2.noise_level
-                },
+                }
             };
         }
 
         if (data is AcarsdecFrame acarsdecFrame)
-        {
             return new AcarsFrame
             {
                 Channel = $"{acarsdecFrame.freq * 1000000}",
@@ -69,7 +62,6 @@ public class MinimizeAcars
                     ["Level"] = acarsdecFrame.level
                 }
             };
-        }
 
         return null;
     }

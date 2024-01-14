@@ -1,4 +1,3 @@
-
 using Aviator.Main.Handler;
 using Aviator.Main.Models;
 using Aviator.Main.Models.Router.Output;
@@ -8,8 +7,8 @@ namespace Aviator.Main.Worker;
 
 public class AviatorRouter : BackgroundService
 {
-    private readonly AviatorRouterService _routerService;
     private readonly ILogger _logger;
+    private readonly AviatorRouterService _routerService;
 
     public AviatorRouter(AviatorRouterService routerService, ILogger<AviatorRouter> logger)
     {
@@ -39,8 +38,6 @@ public class AviatorRouter : BackgroundService
         if (decoder == null) return;
 
         foreach (var routerOutput in _routerService.Outputs[(Decoder)decoder].OfType<IRouterOutput>())
-        {
             await routerOutput.Write(buffer, cancellationToken);
-        }
     }
 }

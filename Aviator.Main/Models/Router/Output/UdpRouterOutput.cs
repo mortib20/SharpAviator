@@ -7,9 +7,9 @@ namespace Aviator.Main.Models.Router.Output;
 
 public class UdpRouterOutput : IRouterOutput
 {
-    private readonly UdpClient _udpClient = new();
     private readonly IPEndPoint _ipEndPoint;
     private readonly ILogger _logger;
+    private readonly UdpClient _udpClient = new();
 
     public UdpRouterOutput(string address, int port, ILoggerFactory loggerFactory)
     {
@@ -18,10 +18,10 @@ public class UdpRouterOutput : IRouterOutput
         _logger.LogInformation("Created");
     }
 
-    public async ValueTask Write(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+    public async Task Write(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
     {
         try
-        { 
+        {
             await _udpClient.SendAsync(buffer, _ipEndPoint, cancellationToken).ConfigureAwait(false);
         }
         catch (Exception e)
