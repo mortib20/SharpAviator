@@ -6,7 +6,7 @@ namespace Aviator.Main.Database;
 
 public class AviatorContext(DbContextOptions<AviatorContext> options) : DbContext(options)
 {
-    public required DbSet<Endpoint> Outputs { get; init; }
+    public required DbSet<Endpoint> Endpoints { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

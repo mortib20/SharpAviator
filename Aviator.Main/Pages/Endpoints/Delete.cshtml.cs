@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aviator.Main.Pages.Endpoint;
+namespace Aviator.Main.Pages.Endpoints;
 
 public class DeleteModel : PageModel
 {
@@ -20,7 +20,7 @@ public class DeleteModel : PageModel
     {
         if (id == null) return NotFound();
 
-        var endpoint = await _context.Outputs.FirstOrDefaultAsync(m => m.Guid == id);
+        var endpoint = await _context.Endpoints.FirstOrDefaultAsync(m => m.Guid == id);
 
         if (endpoint == null)
             return NotFound();
@@ -32,11 +32,11 @@ public class DeleteModel : PageModel
     {
         if (id == null) return NotFound();
 
-        var endpoint = await _context.Outputs.FindAsync(id);
+        var endpoint = await _context.Endpoints.FindAsync(id);
         if (endpoint != null)
         {
             Endpoint = endpoint;
-            _context.Outputs.Remove(Endpoint);
+            _context.Endpoints.Remove(Endpoint);
             await _context.SaveChangesAsync();
         }
 

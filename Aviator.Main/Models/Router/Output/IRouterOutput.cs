@@ -2,5 +2,6 @@ namespace Aviator.Main.Models.Router.Output;
 
 public interface IRouterOutput
 {
-    Task Write(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default);
+    public bool Connected { get; }
+    Task WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default);
 }

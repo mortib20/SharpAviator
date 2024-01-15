@@ -10,6 +10,7 @@ public class UdpRouterOutput : IRouterOutput
     private readonly IPEndPoint _ipEndPoint;
     private readonly ILogger _logger;
     private readonly UdpClient _udpClient = new();
+    public bool Connected => true;
 
     public UdpRouterOutput(string address, int port, ILoggerFactory loggerFactory)
     {
@@ -18,7 +19,7 @@ public class UdpRouterOutput : IRouterOutput
         _logger.LogInformation("Created");
     }
 
-    public async Task Write(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+    public async Task WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -26,7 +27,7 @@ public class UdpRouterOutput : IRouterOutput
         }
         catch (Exception e)
         {
-            Log.Error(e.Message);
+            _logger.LogError("{Message}", e.Message);
         }
     }
 }

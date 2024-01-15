@@ -1,7 +1,7 @@
 using Aviator.Main.Database;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Aviator.Main.Pages.Endpoint;
+namespace Aviator.Main.Pages.Endpoints;
 
 public class IndexModel : PageModel
 {
@@ -16,7 +16,7 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        var grouped = _context.Outputs
+        var grouped = _context.Endpoints
             .AsEnumerable()
             .GroupBy(s => s.Decoder)
             .SelectMany(s => s);

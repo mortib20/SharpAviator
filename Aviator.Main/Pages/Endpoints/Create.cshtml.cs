@@ -2,7 +2,7 @@ using Aviator.Main.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Aviator.Main.Pages.Endpoint;
+namespace Aviator.Main.Pages.Endpoints;
 
 public class CreateModel : PageModel
 {
@@ -25,7 +25,7 @@ public class CreateModel : PageModel
     {
         if (!ModelState.IsValid) return Page();
 
-        _context.Outputs.Add(Endpoint);
+        _context.Endpoints.Add(Endpoint);
         await _context.SaveChangesAsync();
 
         return RedirectToPage("./Index");

@@ -1,0 +1,49 @@
+@using Aviator.Main.Services
+@inject AviatorRouterService Service
+
+<button @onclick="Service.OutputService.Restart" class="btn btn-success">Restart Aviator</button>
+<button @onclick="RestartAll" class="btn btn-success">Restart</button>
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+        <tr>
+            <th>Controls</th>
+            <th>Decoder</th>
+            <th>Endpoint</th>
+            <th>Started</th>
+            <th>Connected</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var decoder in Service.OutputService.Outputs.Keys)
+        {
+            @foreach (var output in Service.OutputService.Outputs[decoder])
+            {
+                <tr>
+                    <td class="d-flex gap-1 flex-row flex-nowrap">
+                        <button @onclick="output.Start" class="btn btn-success">Start</button>
+                        <button @onclick="output.Stop" class="btn btn-danger">Stop</button>
+                        <button @onclick="output.Restart" class="btn btn-warning">Restart</button>
+                        <button class="btn btn-info">Logs</button>
+                    </td>
+                    <td>@decoder</td>
+                    <td>@output.Endpoint</td>
+                    <td>@output.Started</td>
+                    <td>@output.Connected</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+
+@code {
+
+
+    private void RestartAll()
+    {
+        Service.OutputService.Outputs.Values.SelectMany(s => s).ToList().ForEach(b => b.Restart());
+    }
+
+}

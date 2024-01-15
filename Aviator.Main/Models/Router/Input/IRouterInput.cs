@@ -1,3 +1,5 @@
+using Aviator.Main.Models.Delegates;
+
 namespace Aviator.Main.Models.Router.Input;
 
 public interface IRouterInput

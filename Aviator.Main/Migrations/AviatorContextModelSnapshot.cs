@@ -39,12 +39,12 @@ namespace Aviator.Main.Migrations
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Outputs");
+                    b.ToTable("Endpoints");
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("0efa2d19-de65-45bd-a3a8-1305afd6cb26"),
+                            Guid = new Guid("4c6518dd-ac1d-4347-9beb-6e3310c11701"),
                             Address = "feed.airframes.io",
                             Decoder = 0,
                             Port = 5552,
@@ -52,7 +52,7 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("2f48dcc1-190b-4c94-91d6-53900464e8e9"),
+                            Guid = new Guid("df456bcb-c580-4409-884f-20d517ad6925"),
                             Address = "feed.airframes.io",
                             Decoder = 1,
                             Port = 5556,
@@ -60,7 +60,7 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("24cd028d-4202-4177-b673-75ccf6df2139"),
+                            Guid = new Guid("3ab42391-2fd9-4930-9351-a5c2481a52c5"),
                             Address = "feed.airframes.io",
                             Decoder = 4,
                             Port = 5550,
@@ -68,7 +68,7 @@ namespace Aviator.Main.Migrations
                         },
                         new
                         {
-                            Guid = new Guid("791e21c8-0763-4dc4-94bf-8241a24d8bec"),
+                            Guid = new Guid("ce773214-564d-48b3-b345-b726cbe7d10d"),
                             Address = "feed.airframes.io",
                             Decoder = 2,
                             Port = 5571,

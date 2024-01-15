@@ -7,7 +7,7 @@
     <title>@ViewData["Title"] - Aviator</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/site.css"/>
-    <link rel="stylesheet" href="~/Aviator.Main.style.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Aviator.Main.styles.css" asp-append-version="true"/>
     <base href="~/"/>
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
 </head>
@@ -24,12 +24,10 @@
                 @* Links *@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="Status">Status</a>
+                        <a class="nav-link" asp-area="" asp-page="/Status">Status</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="Endpoint/Index">Endpoints</a>
+                        <a class="nav-link" asp-page="Endpoints/Index" >Endpoints</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +35,7 @@
     </nav>
 </header>
 
-<div class="container-lg">
+<div class="container-lg py-2">
     @RenderBody()
 </div>
 

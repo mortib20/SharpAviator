@@ -1,4 +1,8 @@
 ﻿@page
-@model Aviator.Main.Pages.StatusModel
+@using Aviator.Main.Components
+@model StatusModel
 @{
+    ViewData["Title"] = "Status";
 }
+
+<component type="typeof(AviatorRouterStatus)" render-mode="ServerPrerendered"/>

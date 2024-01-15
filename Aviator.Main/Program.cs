@@ -12,12 +12,14 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
-builder.Services.AddDbContext<AviatorContext>(s => s.UseSqlite("Data source=./aviator.db"));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddServerSideBlazor().AddInteractiveServerComponents();
 
+builder.Services.AddDbContext<AviatorContext>(s => s.UseSqlite("Data source=./aviator.db"));
+builder.Services.AddSingleton<AviatorRepository>();
+builder.Services.AddSingleton<AviatorRouterOutputService>();
 builder.Services.AddSingleton<AviatorRouterService>();
-builder.Services.AddHostedService<AviatorRouter>();
+builder.Services.AddHostedService<AviatorRouterWorker>();
 
 await using var app = builder.Build();
 

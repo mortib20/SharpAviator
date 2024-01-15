@@ -1,12 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Aviator.Main.Pages
+namespace Aviator.Main.Pages;
+
+public class StatusModel : PageModel
 {
-    public class StatusModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

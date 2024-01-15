@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aviator.Main.Pages.Endpoint;
+namespace Aviator.Main.Pages.Endpoints;
 
 public class DetailsModel : PageModel
 {
@@ -20,7 +20,7 @@ public class DetailsModel : PageModel
     {
         if (id == null) return NotFound();
 
-        var endpoint = await _context.Outputs.FirstOrDefaultAsync(m => m.Guid == id);
+        var endpoint = await _context.Endpoints.FirstOrDefaultAsync(m => m.Guid == id);
         if (endpoint == null)
             return NotFound();
         Endpoint = endpoint;

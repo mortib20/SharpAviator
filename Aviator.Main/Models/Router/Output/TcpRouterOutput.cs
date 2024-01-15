@@ -7,8 +7,10 @@ public class TcpRouterOutput : IRouterOutput
 {
     private readonly IPEndPoint _ipEndPoint;
     private readonly ILogger _logger;
+    private bool _connecting;
+    private bool _error;
     private TcpClient _tcpClient = new();
-    private bool _connecting = false;
+    public bool Connected => _tcpClient.Connected;
 
     public TcpRouterOutput(string address, int port, ILoggerFactory loggerFactory)
     {
@@ -17,13 +19,14 @@ public class TcpRouterOutput : IRouterOutput
         _logger.LogInformation("Created");
     }
 
-    public async Task Write(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+
+    public async Task WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
     {
         if (!_tcpClient.Connected && !_connecting)
         {
             Connect(cancellationToken);
             return;
-        };
+        }
 
         if (_tcpClient.Connected)
         {
@@ -35,6 +38,7 @@ public class TcpRouterOutput : IRouterOutput
             catch (Exception e)
             {
                 _logger.LogError("{Error}", e.Message);
+                _error = true;
             }
         }
     }
@@ -43,7 +47,11 @@ public class TcpRouterOutput : IRouterOutput
     {
         _connecting = true;
         _logger.LogInformation("Connect");
-        //_tcpClient = new TcpClient();
+        if (_error)
+        {
+            _error = false;
+            _tcpClient = new TcpClient();
+        }
         _tcpClient.Connect(_ipEndPoint);
     }
 }

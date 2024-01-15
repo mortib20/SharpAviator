@@ -1,16 +1,15 @@
 using Aviator.Main.Handler;
 using Aviator.Main.Models;
-using Aviator.Main.Models.Router.Output;
 using Aviator.Main.Services;
 
 namespace Aviator.Main.Worker;
 
-public class AviatorRouter : BackgroundService
+public class AviatorRouterWorker : BackgroundService
 {
     private readonly ILogger _logger;
     private readonly AviatorRouterService _routerService;
 
-    public AviatorRouter(AviatorRouterService routerService, ILogger<AviatorRouter> logger)
+    public AviatorRouterWorker(AviatorRouterService routerService, ILogger<AviatorRouterWorker> logger)
     {
         _routerService = routerService;
         _logger = logger;
@@ -35,9 +34,8 @@ public class AviatorRouter : BackgroundService
         if (jsonNode is null) return;
 
         var decoder = DecoderDetector.Detect(jsonNode);
-        if (decoder == null) return;
+        if (decoder is null) return;
 
-        foreach (var routerOutput in _routerService.Outputs[(Decoder)decoder].OfType<IRouterOutput>())
-            await routerOutput.Write(buffer, cancellationToken);
+        _routerService.WriteToDecoderOutputs((Decoder)decoder, buffer, cancellationToken);
     }
 }

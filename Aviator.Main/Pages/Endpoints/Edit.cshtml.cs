@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aviator.Main.Pages.Endpoint;
+namespace Aviator.Main.Pages.Endpoints;
 
 public class EditModel : PageModel
 {
@@ -20,7 +20,7 @@ public class EditModel : PageModel
     {
         if (id == null) return NotFound();
 
-        var endpoint = await _context.Outputs.FirstOrDefaultAsync(m => m.Guid == id);
+        var endpoint = await _context.Endpoints.FirstOrDefaultAsync(m => m.Guid == id);
         if (endpoint == null) return NotFound();
         Endpoint = endpoint;
         return Page();
@@ -50,6 +50,6 @@ public class EditModel : PageModel
 
     private bool EndpointExists(Guid id)
     {
-        return _context.Outputs.Any(e => e.Guid == id);
+        return _context.Endpoints.Any(e => e.Guid == id);
     }
 }

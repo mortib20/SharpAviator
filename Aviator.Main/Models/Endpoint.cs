@@ -13,4 +13,9 @@ public class Endpoint
 
     [Range(ushort.MinValue, ushort.MaxValue)]
     public required int Port { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Address}:{Port}";
+    }
 }
