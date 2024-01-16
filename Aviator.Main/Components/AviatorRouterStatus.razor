@@ -1,4 +1,6 @@
 @using Aviator.Main.Services
+@using System.Globalization
+@using System.Timers
 @inject AviatorRouterService Service
 
 <button @onclick="Service.OutputService.Restart" class="btn btn-success">Restart Aviator</button>
@@ -10,8 +12,9 @@
             <th>Controls</th>
             <th>Decoder</th>
             <th>Endpoint</th>
-            <th>Started</th>
+            <th>Writing</th>
             <th>Connected</th>
+            <th>Last Message</th>
         </tr>
         </thead>
         <tbody>
@@ -20,16 +23,21 @@
             @foreach (var output in Service.OutputService.Outputs[decoder])
             {
                 <tr>
-                    <td class="d-flex gap-1 flex-row flex-nowrap">
-                        <button @onclick="output.Start" class="btn btn-success">Start</button>
-                        <button @onclick="output.Stop" class="btn btn-danger">Stop</button>
-                        <button @onclick="output.Restart" class="btn btn-warning">Restart</button>
-                        <button class="btn btn-info">Logs</button>
+                    <td>
+                        @if (@output.Writing)
+                        {
+                            <button @onclick="output.Stop" class="btn btn-danger">Stop</button>
+                        }
+                        else
+                        {
+                            <button @onclick="output.Start" class="btn btn-success">Start</button>
+                        }
                     </td>
                     <td>@decoder</td>
                     <td>@output.Endpoint</td>
-                    <td>@output.Started</td>
+                    <td>@output.Writing</td>
                     <td>@output.Connected</td>
+                    <td>@output.LastMessage.ToString("R",CultureInfo.InvariantCulture)</td>
                 </tr>
             }
         }
@@ -39,7 +47,19 @@
 
 
 @code {
+    public Timer Timer;
 
+    protected override void OnInitialized()
+    {
+        Timer = new Timer(TimeSpan.FromSeconds(10));
+        Timer.Elapsed += (sender, args) => Callback(args);
+        Timer.Start();
+    }
+
+    private void Callback(ElapsedEventArgs args)
+    {
+        InvokeAsync(StateHasChanged);
+    }
 
     private void RestartAll()
     {

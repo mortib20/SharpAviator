@@ -6,31 +6,34 @@ public class AviatorRouterOutput(Endpoint endpoint, ILoggerFactory loggerFactory
 {
     private readonly IRouterOutput _output = CreateOutput(endpoint, loggerFactory);
     public readonly Endpoint Endpoint = endpoint;
-    public bool Started { get; private set; }
+    public bool Writing { get; private set; }
+    public DateTime LastMessage { get; private set; }
     public bool Connected => _output.Connected;
 
     public void Start()
     {
-        if (Started) return;
-        Started = true;
+        if (Writing) return;
+        Writing = true;
     }
 
     public void Stop()
     {
-        if(!Started) return;
-        Started = false;
+        if(!Writing) return;
+        Writing = false;
     }
 
     public void Restart()
     {
-        if (Started)
+        if (Writing)
             Stop();
-        if (!Started)
+        if (!Writing)
             Start();
     }
     
     public async Task Write(byte[] buffer, CancellationToken cancellationToken)
     {
+        if(!Writing) return;
+        LastMessage = DateTime.Now;
         await _output.WriteAsync(buffer, cancellationToken);
     }
 
