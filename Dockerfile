@@ -18,6 +18,8 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "Aviator.Main.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+RUN dotnet tool install --global dotnet-ef
+RUN dotnet ef database update
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Aviator.Main.dll"]
