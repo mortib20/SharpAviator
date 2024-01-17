@@ -1,5 +1,6 @@
 using Aviator.Main.Database;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Endpoint = Aviator.Main.Models.Endpoint;
 
 namespace Aviator.Main.Pages.Endpoints;
 
@@ -12,7 +13,7 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Models.Endpoint> Endpoint { get; set; } = default!;
+    public IList<Endpoint> Endpoint { get; set; } = default!;
 
     public async Task OnGetAsync()
     {

@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Sockets;
-using Serilog;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Aviator.Main.Models.Router.Output;
@@ -10,7 +9,6 @@ public class UdpRouterOutput : IRouterOutput
     private readonly IPEndPoint _ipEndPoint;
     private readonly ILogger _logger;
     private readonly UdpClient _udpClient = new();
-    public bool Connected => true;
 
     public UdpRouterOutput(string address, int port, ILoggerFactory loggerFactory)
     {
@@ -18,6 +16,8 @@ public class UdpRouterOutput : IRouterOutput
         _logger = loggerFactory.CreateLogger($"UDP:{address}:{port}");
         _logger.LogInformation("Created");
     }
+
+    public bool Connected => true;
 
     public async Task WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
     {

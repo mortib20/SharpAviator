@@ -18,7 +18,7 @@ public class AviatorRouterOutput(Endpoint endpoint, ILoggerFactory loggerFactory
 
     public void Stop()
     {
-        if(!Writing) return;
+        if (!Writing) return;
         Writing = false;
     }
 
@@ -29,10 +29,10 @@ public class AviatorRouterOutput(Endpoint endpoint, ILoggerFactory loggerFactory
         if (!Writing)
             Start();
     }
-    
+
     public async Task Write(byte[] buffer, CancellationToken cancellationToken)
     {
-        if(!Writing) return;
+        if (!Writing) return;
         LastMessage = DateTime.Now;
         await _output.WriteAsync(buffer, cancellationToken);
     }

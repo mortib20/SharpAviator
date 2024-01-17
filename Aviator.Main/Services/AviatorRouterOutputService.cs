@@ -15,7 +15,7 @@ public class AviatorRouterOutputService(AviatorRepository aviatorRepository, ILo
     {
         Outputs = CreateOutputs(aviatorRepository.AviatorContext.Endpoints.ToImmutableList(), loggerFactory);
     }
-    
+
     private static Dictionary<Decoder, List<AviatorRouterOutput>> CreateOutputs(IList<Endpoint> endpoints,
         ILoggerFactory loggerFactory)
     {

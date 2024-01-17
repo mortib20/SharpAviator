@@ -1,6 +1,6 @@
+@using System.Timers
 @using Aviator.Main.Services
 @using System.Globalization
-@using System.Timers
 @inject AviatorRouterService Service
 
 <button @onclick="Service.OutputService.Restart" class="btn btn-success">Restart Aviator</button>
@@ -24,7 +24,7 @@
             {
                 <tr>
                     <td>
-                        @if (@output.Writing)
+                        @if (output.Writing)
                         {
                             <button @onclick="output.Stop" class="btn btn-danger">Stop</button>
                         }
@@ -37,7 +37,7 @@
                     <td>@output.Endpoint</td>
                     <td>@output.Writing</td>
                     <td>@output.Connected</td>
-                    <td>@output.LastMessage.ToString("R",CultureInfo.InvariantCulture)</td>
+                    <td>@output.LastMessage.ToString("R", CultureInfo.InvariantCulture)</td>
                 </tr>
             }
         }
@@ -47,13 +47,13 @@
 
 
 @code {
-    public Timer Timer;
+    private Timer? _timer;
 
     protected override void OnInitialized()
     {
-        Timer = new Timer(TimeSpan.FromSeconds(10));
-        Timer.Elapsed += (sender, args) => Callback(args);
-        Timer.Start();
+        _timer = new Timer(TimeSpan.FromSeconds(10));
+        _timer.Elapsed += (sender, args) => Callback(args);
+        _timer.Start();
     }
 
     private void Callback(ElapsedEventArgs args)

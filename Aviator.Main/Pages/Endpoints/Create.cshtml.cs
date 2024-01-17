@@ -1,6 +1,7 @@
 using Aviator.Main.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Endpoint = Aviator.Main.Models.Endpoint;
 
 namespace Aviator.Main.Pages.Endpoints;
 
@@ -13,7 +14,7 @@ public class CreateModel : PageModel
         _context = context;
     }
 
-    [BindProperty] public Models.Endpoint Endpoint { get; set; } = default!;
+    [BindProperty] public Endpoint Endpoint { get; set; } = default!;
 
     public IActionResult OnGet()
     {

@@ -2,6 +2,7 @@ using Aviator.Main.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Endpoint = Aviator.Main.Models.Endpoint;
 
 namespace Aviator.Main.Pages.Endpoints;
 
@@ -14,7 +15,7 @@ public class DetailsModel : PageModel
         _context = context;
     }
 
-    public Models.Endpoint Endpoint { get; set; } = default!;
+    public Endpoint Endpoint { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
